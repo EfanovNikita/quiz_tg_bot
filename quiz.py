@@ -1,4 +1,4 @@
-from table import get_quiz_index, update_quiz_index
+from table import get_quiz_index, update_quiz_index_and_points
 from questions import data as quiz_data
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram import types
@@ -7,8 +7,9 @@ from aiogram import types
 async def new_quiz(message):
     user_id = message.from_user.id
     current_question_index = 0
-    await update_quiz_index(user_id, current_question_index)
-
+    current_points = 0
+    await update_quiz_index_and_points(user_id, current_question_index, current_points)
+    
     await get_question(message, user_id)
 
 async def get_question(message, user_id):
@@ -23,10 +24,10 @@ async def get_question(message, user_id):
 def generate_options_keyboard(answer_options, right_answer):
     builder = InlineKeyboardBuilder()
 
-    for option in answer_options:
+    for i, option in enumerate(answer_options):
         builder.add(types.InlineKeyboardButton(
             text=option,
-            callback_data="right_answer" if option == right_answer else "wrong_answer")
+            callback_data=f"right_answer {i}" if option == right_answer else f"wrong_answer {i}")
         )
 
     builder.adjust(1)

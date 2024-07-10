@@ -1,1 +1,1 @@
-# quiz_tg_bot
+# Quiz telegram bot
