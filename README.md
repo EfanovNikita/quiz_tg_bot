@@ -2,4 +2,9 @@
 
 Bot: https://t.me/anotherquiz_bot
 
-Commands: /start, /quiz, /score
+Commands: 
+/start - Запускает бота
+
+/quiz - Запускает новую игру
+
+/score - Посмотреть статистику игроков
